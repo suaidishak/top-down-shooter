@@ -1,0 +1,12 @@
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor and tooling folders
+.vscode/
+.idea/
+*.swp
+
+# Logs and local server output
+*.log
