@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GRIDFIRE — a retro top-down shooter you can play in your browser.">
+  <title>GRIDFIRE — Retro Top-Down Shooter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="stage" id="stage">
+    <canvas id="game" width="960" height="540" tabindex="-1" aria-label="Game arena"></canvas>
+
+    <div class="hud" id="hud" hidden>
+      <div class="hud__group hud__group--left">
+        <span class="hud__label">HP</span>
+        <div class="hp" id="hp-bar" role="progressbar" aria-label="Health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+          <div class="hp__fill" id="hp-fill"></div>
+        </div>
+        <span class="hud__hp-text" id="hp-text">100</span>
+      </div>
+      <div class="hud__group hud__group--center">
+        <span id="hud-level">LVL 1/6</span>
+        <span class="hud__dot">·</span>
+        <span id="hud-wave">WAVE 1/3</span>
+      </div>
+      <div class="hud__group hud__group--right">
+        <span class="powerup" id="hud-powerup" hidden>
+          <span class="powerup__label" id="hud-powerup-label"></span>
+        </span>
+        <span class="hud__score" id="hud-score">0</span>
+        <button type="button" class="hud__pause" id="btn-pause" aria-label="Pause game">II</button>
+      </div>
+    </div>
+
+    <div class="boss-bar" id="boss-bar" hidden>
+      <span class="boss-bar__name" id="boss-name">OVERLORD</span>
+      <div class="boss-bar__track">
+        <div class="boss-bar__fill" id="boss-fill"></div>
+      </div>
+    </div>
+
+    <section class="screen" id="screen-menu" aria-labelledby="menu-title">
+      <div class="panel">
+        <p class="eyebrow">RETRO TOP-DOWN SHOOTER</p>
+        <h1 class="title" id="menu-title">GRIDFIRE</h1>
+        <p class="tagline">Survive six sectors. Clear the waves. Kill the Overlord.</p>
+        <p class="highscore">HIGH SCORE <strong id="menu-high-score">0</strong></p>
+        <button type="button" class="btn btn--primary" id="btn-play">PLAY</button>
+        <ul class="controls">
+          <li><span>Move</span><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></li>
+          <li><span>Aim</span><kbd>Mouse</kbd></li>
+          <li><span>Shoot</span><kbd>Hold Left Click</kbd></li>
+          <li><span>Pause</span><kbd>Esc</kbd> / <kbd>P</kbd></li>
+          <li><span>Mute</span><kbd>M</kbd></li>
+        </ul>
+        <button type="button" class="btn btn--ghost" id="btn-mute" aria-pressed="false">SOUND: ON</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-pause" aria-labelledby="pause-title" hidden>
+      <div class="panel">
+        <p class="eyebrow">PAUSED</p>
+        <h2 class="title title--sm" id="pause-title">TAKE A BREATH</h2>
+        <div class="stack">
+          <button type="button" class="btn btn--primary" id="btn-resume">RESUME</button>
+          <button type="button" class="btn" id="btn-restart">RESTART LEVEL</button>
+          <button type="button" class="btn btn--ghost" id="btn-quit">QUIT TO MENU</button>
+          <button type="button" class="btn btn--ghost" id="btn-mute-pause" aria-pressed="false">SOUND: ON</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-level" aria-labelledby="level-title" hidden>
+      <div class="panel">
+        <p class="eyebrow">SECTOR CLEAR</p>
+        <h2 class="title title--sm" id="level-title">LEVEL COMPLETE</h2>
+        <p class="stat" id="level-summary">+500 PTS</p>
+        <button type="button" class="btn btn--primary" id="btn-continue">CONTINUE</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-gameover" aria-labelledby="gameover-title" hidden>
+      <div class="panel">
+        <p class="eyebrow">SIGNAL LOST</p>
+        <h2 class="title title--sm" id="gameover-title">GAME OVER</h2>
+        <p class="stat">SCORE <strong id="final-score">0</strong></p>
+        <div class="stack stack--row">
+          <button type="button" class="btn btn--primary" id="btn-retry">RETRY</button>
+          <button type="button" class="btn btn--ghost" id="btn-menu">MENU</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-victory" aria-labelledby="victory-title" hidden>
+      <div class="panel">
+        <p class="eyebrow">OVERLORD DESTROYED</p>
+        <h2 class="title" id="victory-title">VICTORY</h2>
+        <p class="stat">FINAL SCORE <strong id="victory-score">0</strong></p>
+        <div class="stack stack--row">
+          <button type="button" class="btn btn--primary" id="btn-again">PLAY AGAIN</button>
+          <button type="button" class="btn btn--ghost" id="btn-victory-menu">MENU</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="sr-only" id="sr-status" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="js/sprites.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
